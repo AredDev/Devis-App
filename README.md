@@ -25,7 +25,7 @@ cp .env.example .env.local
 ```
 Contenu par défaut de `.env.local` :
 ```env
-# Supabase (Laisser par défaut pour activer la base en mémoire)
+# Supabase
 NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
