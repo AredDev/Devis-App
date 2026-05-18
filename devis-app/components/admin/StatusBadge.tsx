@@ -17,7 +17,7 @@ export default function StatusBadge({ status }: StatusBadgeProps) {
       );
     case 'traite':
       return (
-        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/20 dark:text-emerald-400 dark:border-emerald-900/50">
+        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FFDE77]/25 text-[#443C34] border border-[#FFDE77]/50">
           <CheckCircle className="w-3.5 h-3.5" />
           <span>Traité</span>
         </span>

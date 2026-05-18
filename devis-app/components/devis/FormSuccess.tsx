@@ -19,8 +19,8 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
     <div className="text-center py-8 space-y-6">
       {/* Animated Glowing Icon */}
       <div className="flex justify-center relative">
-        <div className="absolute inset-0 bg-emerald-500/10 dark:bg-emerald-500/5 rounded-full blur-xl w-24 h-24 mx-auto animate-pulse" />
-        <div className="relative bg-gradient-to-tr from-emerald-500 to-teal-500 rounded-full p-4 text-white shadow-lg shadow-emerald-500/25">
+        <div className="absolute inset-0 bg-[#FFDE77]/10 rounded-full blur-xl w-24 h-24 mx-auto animate-pulse" />
+        <div className="relative bg-[#FFDE77] rounded-full p-4 text-[#443C34] shadow-lg shadow-[#FFDE77]/25">
           <CheckCircle2 className="w-12 h-12 stroke-[2.5]" />
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
           onClick={copyToClipboard}
           className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all duration-300 cursor-pointer ${
             copied
-              ? 'bg-emerald-500 border-emerald-500 text-white shadow-md'
+              ? 'bg-[#FFDE77] border-[#FFDE77] text-[#443C34] shadow-md font-bold'
               : 'bg-white dark:bg-zinc-800 border-slate-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-300 hover:border-slate-300 hover:shadow-sm'
           }`}
         >
@@ -71,7 +71,7 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
       {/* Detailed Steps Recap */}
       <div className="max-w-md mx-auto text-left grid grid-cols-1 gap-3.5 pt-4">
         <div className="flex items-start gap-3">
-          <div className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 p-2 rounded-lg mt-0.5">
+          <div className="bg-[#FFDE77]/20 text-[#443C34] p-2 rounded-lg mt-0.5">
             <PhoneCall className="w-4 h-4" />
           </div>
           <div>
@@ -85,7 +85,7 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
         </div>
 
         <div className="flex items-start gap-3">
-          <div className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 p-2 rounded-lg mt-0.5">
+          <div className="bg-[#FFDE77]/20 text-[#443C34] p-2 rounded-lg mt-0.5">
             <Calendar className="w-4 h-4" />
           </div>
           <div>
@@ -99,7 +99,7 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
         </div>
 
         <div className="flex items-start gap-3">
-          <div className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 p-2 rounded-lg mt-0.5">
+          <div className="bg-[#FFDE77]/20 text-[#443C34] p-2 rounded-lg mt-0.5">
             <ShieldCheck className="w-4 h-4" />
           </div>
           <div>
@@ -118,7 +118,7 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
         <button
           type="button"
           onClick={onReset}
-          className="px-6 py-2.5 rounded-xl text-sm font-bold bg-slate-900 text-white dark:bg-white dark:text-slate-950 transition-all duration-300 hover:bg-slate-800 dark:hover:bg-slate-100 shadow-md cursor-pointer"
+          className="px-6 py-2.5 rounded-xl text-sm font-bold bg-[#FFDE77] text-[#443C34] transition-all duration-300 hover:shadow-md cursor-pointer"
         >
           Faire une autre demande
         </button>
@@ -126,3 +126,4 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
     </div>
   );
 }
+

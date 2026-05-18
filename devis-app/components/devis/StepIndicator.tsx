@@ -20,7 +20,7 @@ export default function StepIndicator({ currentStep, totalSteps }: StepIndicator
         <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
           Étape {currentStep} sur {totalSteps}
         </span>
-        <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+        <span className="text-sm font-bold text-[#443C34]">
           {STEPS[currentStep - 1].label}
         </span>
       </div>
@@ -32,7 +32,7 @@ export default function StepIndicator({ currentStep, totalSteps }: StepIndicator
         
         {/* Active progress line */}
         <div 
-          className="absolute top-1/2 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 -translate-y-1/2 transition-all duration-500 ease-in-out z-0"
+          className="absolute top-1/2 left-0 h-0.5 bg-[#FFDE77] -translate-y-1/2 transition-all duration-500 ease-in-out z-0"
           style={{ width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%` }}
         />
 
@@ -47,9 +47,9 @@ export default function StepIndicator({ currentStep, totalSteps }: StepIndicator
               <div 
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-500 shadow-md ${
                   isCompleted 
-                    ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white ring-4 ring-emerald-500/20' 
+                    ? 'bg-[#FFDE77] text-[#443C34] ring-4 ring-[#FFDE77]/20' 
                     : isActive 
-                    ? 'bg-white dark:bg-zinc-900 border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 ring-4 ring-emerald-500/10 scale-110' 
+                    ? 'bg-white dark:bg-zinc-900 border-2 border-[#FFDE77] text-[#443C34] ring-4 ring-[#FFDE77]/10 scale-110' 
                     : 'bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 text-slate-400'
                 }`}
                 aria-current={isActive ? 'step' : undefined}
@@ -65,7 +65,7 @@ export default function StepIndicator({ currentStep, totalSteps }: StepIndicator
               <div className="mt-2 text-center">
                 <p className={`text-xs font-semibold tracking-wide transition-colors duration-300 ${
                   isActive 
-                    ? 'text-emerald-600 dark:text-emerald-400 font-bold' 
+                    ? 'text-[#443C34] font-bold' 
                     : isCompleted 
                     ? 'text-slate-700 dark:text-zinc-300 font-medium' 
                     : 'text-slate-400'
@@ -83,3 +83,4 @@ export default function StepIndicator({ currentStep, totalSteps }: StepIndicator
     </div>
   );
 }
+

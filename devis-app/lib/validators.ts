@@ -29,13 +29,13 @@ export const emailSchema = z
   .min(1, "L'email est requis")
   .email("Veuillez saisir une adresse email valide");
 
-// Validate French telephone numbers (standard format: 0X XX XX XX XX or international +33 X XX XX XX XX)
+// Validate international telephone numbers (standard format: leading optional +, followed by 8 to 20 digits, spaces, or dashes)
 export const telephoneSchema = z
   .string()
   .min(1, "Le numéro de téléphone est requis")
   .regex(
-    /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/,
-    "Veuillez saisir un numéro de téléphone français valide (ex: 06 12 34 56 78)"
+    /^\+?[0-9\s.-]{8,20}$/,
+    "Veuillez saisir un numéro de téléphone valide avec son indicatif (ex: +33 6 12 34 56 78)"
   );
 
 export const messageSchema = z

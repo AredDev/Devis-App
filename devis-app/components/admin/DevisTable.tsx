@@ -56,7 +56,7 @@ export default function DevisTable({ devis, onStatusChange, onViewDetails }: Dev
       case '24h':
         return 'bg-red-50 text-red-700 border-red-200 dark:bg-red-950/20 dark:text-red-400 dark:border-red-900/50';
       case 'annuel':
-        return 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/20 dark:text-emerald-400 dark:border-emerald-900/50';
+        return 'bg-[#FFDE77]/20 text-[#443C34] border-[#FFDE77]/40';
       default:
         return 'bg-slate-50 text-slate-600 border-slate-200 dark:bg-zinc-800/40 dark:text-zinc-400 dark:border-zinc-800';
     }
@@ -156,7 +156,7 @@ export default function DevisTable({ devis, onStatusChange, onViewDetails }: Dev
                               type="button"
                               onClick={() => onStatusChange(item.id, 'traite')}
                               title="Marquer Traité"
-                              className="p-1.5 rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-600 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 transition-all dark:bg-emerald-950/20 dark:border-emerald-900/50 dark:text-emerald-400 dark:hover:bg-emerald-500 dark:hover:text-white cursor-pointer"
+                              className="p-1.5 rounded-lg border border-[#FFDE77]/40 bg-[#FFDE77]/10 text-[#443C34] hover:bg-[#FFDE77] hover:text-[#443C34] hover:border-[#FFDE77] transition-all cursor-pointer"
                             >
                               <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                             </button>
@@ -187,7 +187,7 @@ export default function DevisTable({ devis, onStatusChange, onViewDetails }: Dev
                             type="button"
                             onClick={() => onStatusChange(item.id, 'traite')}
                             title="Restaurer en Traité"
-                            className="p-1.5 rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 transition-all dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400 dark:hover:bg-emerald-500 dark:hover:text-white cursor-pointer"
+                            className="p-1.5 rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-600 hover:bg-[#FFDE77] hover:text-[#443C34] hover:border-[#FFDE77] transition-all cursor-pointer"
                           >
                             <RotateCcw className="w-3.5 h-3.5" />
                           </button>
@@ -275,7 +275,7 @@ export default function DevisTable({ devis, onStatusChange, onViewDetails }: Dev
                         <button
                           type="button"
                           onClick={() => onStatusChange(item.id, 'traite')}
-                          className="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-600 dark:bg-emerald-950/20 dark:border-emerald-900/50 dark:text-emerald-400 text-xs font-bold transition-all cursor-pointer"
+                          className="flex items-center gap-1 px-3 py-1.5 rounded-xl border border-[#FFDE77]/40 bg-[#FFDE77]/10 text-[#443C34] text-xs font-bold transition-all cursor-pointer hover:bg-[#FFDE77]"
                         >
                           <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                           <span>Traiter</span>

@@ -27,7 +27,7 @@ const URGENCIES: { value: Urgence; label: string; desc: string; icon: any; color
     label: 'Contrat annuel de prévention', 
     desc: 'Suivi et passages réguliers pour garantir un environnement sain.', 
     icon: Calendar,
-    colorClass: 'border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 ring-2 ring-emerald-500/20 shadow-sm'
+    colorClass: 'border-[#FFDE77] bg-[#FFDE77]/10 text-[#443C34] ring-2 ring-[#FFDE77]/20 shadow-sm font-bold'
   },
   { 
     value: 'simple', 
@@ -116,7 +116,7 @@ export default function StepTwo({ formData, onChange, errors }: StepTwoProps) {
           className={`block w-full rounded-xl border p-3.5 text-sm focus:outline-none focus:ring-2 transition-all duration-300 bg-white dark:bg-zinc-900 resize-none ${
             errors.message
               ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-              : 'border-slate-200 dark:border-zinc-800 focus:border-emerald-500 focus:ring-emerald-500/20'
+              : 'border-slate-200 dark:border-zinc-800 focus:border-[#FFDE77] focus:ring-[#FFDE77]/20'
           }`}
         />
         <p className="mt-1 text-[11px] text-slate-400 dark:text-zinc-500">
@@ -131,3 +131,4 @@ export default function StepTwo({ formData, onChange, errors }: StepTwoProps) {
     </div>
   );
 }
+

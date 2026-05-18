@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, ShieldAlert, Loader2, Sparkles } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowLeft, ArrowRight, CheckCircle2, ShieldAlert, Loader2, Sparkles, Lock } from 'lucide-react';
 import StepIndicator from '../../components/devis/StepIndicator';
 import StepOne from '../../components/devis/StepOne';
 import StepTwo from '../../components/devis/StepTwo';
@@ -158,32 +159,43 @@ export default function DevisPage() {
   };
 
   return (
-    <div className="flex-1 min-h-screen bg-slate-50 dark:bg-black py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex-1 min-h-screen bg-[#FBFBFB] py-12 px-4 sm:px-6 lg:px-8 font-sans">
+      {/* Back to Portal Hub */}
+      <div className="max-w-3xl mx-auto flex justify-start mb-6">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors duration-200"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Retour à l'accueil</span>
+        </Link>
+      </div>
+
       {/* Header Info */}
       <div className="max-w-3xl mx-auto text-center mb-8">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFDE77]/20 text-[#443C34] text-xs font-bold uppercase tracking-wider mb-3">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Services de Désinfection Pro</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
           Demande de Devis Anti-Nuisibles
         </h1>
-        <p className="mt-2 text-sm sm:text-base text-slate-500 dark:text-zinc-400">
+        <p className="mt-2 text-sm sm:text-base text-slate-500">
           Recevez une estimation précise et planifiez votre intervention en quelques clics.
         </p>
       </div>
 
       {/* Main card */}
-      <div className="max-w-2xl mx-auto bg-white dark:bg-zinc-950 border border-slate-200/50 dark:border-zinc-900 rounded-3xl shadow-xl shadow-slate-100/50 dark:shadow-none overflow-hidden transition-all duration-300">
+      <div className="max-w-2xl mx-auto bg-white border border-slate-200/50 rounded-3xl shadow-xl shadow-slate-100/50 overflow-hidden transition-all duration-300">
         {step < 4 && (
-          <div className="px-6 py-4 bg-slate-50/50 dark:bg-zinc-900/20 border-b border-slate-100 dark:border-zinc-900">
+          <div className="px-6 py-4 bg-slate-50/50 border-b border-slate-100">
             <StepIndicator currentStep={step} totalSteps={3} />
           </div>
         )}
 
         <div className="p-6 sm:p-8">
           {submitError && (
-            <div className="mb-6 p-4 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-900/50 text-red-700 dark:text-red-400 flex items-start gap-3">
+            <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 flex items-start gap-3">
               <ShieldAlert className="w-5 h-5 shrink-0 mt-0.5" />
               <div className="text-sm">
                 <span className="font-bold">Erreur de soumission :</span> {submitError}
@@ -223,13 +235,13 @@ export default function DevisPage() {
 
             {/* Stepper Actions */}
             {step < 4 && (
-              <div className="mt-8 pt-6 border-t border-slate-100 dark:border-zinc-900 flex justify-between gap-4">
+              <div className="mt-8 pt-6 border-t border-slate-100 flex justify-between gap-4">
                 {step > 1 ? (
                   <button
                     type="button"
                     onClick={handlePrev}
                     disabled={loading}
-                    className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-zinc-300 bg-white dark:bg-zinc-950 hover:bg-slate-50 dark:hover:bg-zinc-900 hover:border-slate-300 transition-all duration-300 font-semibold text-sm disabled:opacity-50 cursor-pointer"
+                    className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 font-semibold text-sm disabled:opacity-50 cursor-pointer"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     <span>Retour</span>
@@ -242,7 +254,7 @@ export default function DevisPage() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-300 font-bold text-sm shadow-md cursor-pointer ml-auto"
+                    className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-all duration-300 font-bold text-sm shadow-md cursor-pointer ml-auto"
                   >
                     <span>Continuer</span>
                     <ArrowRight className="w-4 h-4" />
@@ -251,11 +263,11 @@ export default function DevisPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 font-bold text-sm shadow-md disabled:opacity-50 cursor-pointer ml-auto"
+                    className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#FFDE77] text-[#443C34] hover:shadow-lg hover:shadow-[#FFDE77]/25 transition-all duration-300 font-extrabold text-sm shadow-md disabled:opacity-50 cursor-pointer ml-auto"
                   >
                     {loading ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <Loader2 className="w-4 h-4 animate-spin animate-pulse" />
                         <span>Transmission...</span>
                       </>
                     ) : (
@@ -273,9 +285,11 @@ export default function DevisPage() {
       </div>
 
       {/* Safety Notice Footer */}
-      <div className="max-w-md mx-auto text-center mt-6 text-[10px] text-slate-400 dark:text-zinc-500 flex items-center justify-center gap-1">
-        <span>🔒 Vos données de contact sont cryptées et traitées conformément au RGPD.</span>
+      <div className="max-w-md mx-auto text-center mt-6 text-[10px] text-slate-400 flex items-center justify-center gap-1.5">
+        <Lock className="w-3.5 h-3.5 text-slate-400" />
+        <span>Vos données de contact sont cryptées et traitées conformément au RGPD.</span>
       </div>
     </div>
   );
 }
+

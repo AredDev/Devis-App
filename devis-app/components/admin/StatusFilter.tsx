@@ -30,7 +30,7 @@ export default function StatusFilter({ activeFilter, onChange, counts }: StatusF
       value: 'traite', 
       label: 'Traités', 
       count: counts.traite,
-      activeClass: 'bg-emerald-500 text-white shadow-sm shadow-emerald-500/10'
+      activeClass: 'bg-[#FFDE77] text-[#443C34] shadow-sm shadow-[#FFDE77]/10 font-bold'
     },
     { 
       value: 'archive', 

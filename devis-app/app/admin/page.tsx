@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { 
   Shield, 
   LogOut, 
@@ -20,7 +21,9 @@ import {
   Bug,
   Sparkles,
   ClipboardList,
-  Check
+  Check,
+  FileText,
+  ShieldCheck
 } from 'lucide-react';
 import SearchBar from '../../components/admin/SearchBar';
 import StatusFilter from '../../components/admin/StatusFilter';
@@ -35,6 +38,7 @@ export default function AdminDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedDevis, setSelectedDevis] = useState<Devis | null>(null);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const router = useRouter();
 
   // Fetch all devis requests from the API
@@ -104,7 +108,7 @@ export default function AdminDashboardPage() {
     try {
       const response = await fetch('/api/admin/logout', { method: 'POST' });
       if (response.ok) {
-        router.push('/admin/login');
+        router.push('/');
         router.refresh();
       }
     } catch {
@@ -201,29 +205,19 @@ export default function AdminDashboardPage() {
   };
 
   return (
-    <div className="flex-1 min-h-screen bg-slate-50 dark:bg-black flex flex-col font-sans">
+    <div className="flex-1 bg-[#FBFBFB] flex flex-col font-sans">
       {/* Top Navigation Bar */}
-      <nav className="bg-white dark:bg-zinc-950 border-b border-slate-200/50 dark:border-zinc-900 px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between sticky top-0 z-40 shadow-sm">
-        <div className="flex items-center gap-2.5">
-          <div className="bg-gradient-to-tr from-emerald-500 to-teal-500 p-2 rounded-xl text-white">
-            <Shield className="w-5 h-5" />
-          </div>
-          <div>
-            <span className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-1.5">
-              <span>BioControl Admin</span>
-              <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[9px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                v1.0
-              </span>
-            </span>
-            <span className="text-[10px] text-slate-400 dark:text-zinc-500 block">
-              Désinfection & Dératisation Paris
-            </span>
-          </div>
+      <nav className="bg-white border-b border-slate-200/50 px-4 sm:px-6 lg:px-48 py-3 flex items-center justify-between sticky top-0 z-40 shadow-sm">
+        <div className="flex items-center gap-3">
+          <Image src="/images/logo.png" alt="Logo" width={140} height={42} className="object-contain" />
+          <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#FFDE77]/20 text-[#443C34] uppercase tracking-wider">
+            Admin
+          </span>
         </div>
 
         <button
           type="button"
-          onClick={handleLogout}
+          onClick={() => setShowLogoutConfirm(true)}
           className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-zinc-800 text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:bg-red-50 hover:text-red-600 hover:border-red-200 dark:hover:bg-red-950/20 dark:hover:text-red-400 dark:hover:border-red-900/50 transition-all duration-300 cursor-pointer"
         >
           <LogOut className="w-3.5 h-3.5" />
@@ -268,13 +262,13 @@ export default function AdminDashboardPage() {
 
           {/* Card 3: 24h Activity Load (Bonus Feature!) */}
           <div className="bg-white dark:bg-zinc-950 border border-slate-200/50 dark:border-zinc-900 rounded-3xl p-5 flex items-center gap-4 shadow-sm relative overflow-hidden">
-            <div className="p-3.5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400">
+            <div className="p-3.5 rounded-2xl bg-[#FFDE77]/20 text-[#443C34]">
               <Clock className="w-6 h-6" />
             </div>
             <div>
               <span className="text-xs text-slate-400 dark:text-zinc-500 font-semibold block uppercase tracking-wider flex items-center gap-1.5">
                 <span>Activité 24h</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FFDE77] animate-ping" />
               </span>
               <span className="text-2xl font-bold text-slate-900 dark:text-white">
                 {loading ? '...' : stats24h}
@@ -304,7 +298,7 @@ export default function AdminDashboardPage() {
             <button
               type="button"
               onClick={exportToCSV}
-              className="inline-flex items-center justify-center gap-1.5 px-4.5 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-950 text-xs font-bold transition-all duration-300 hover:shadow-md hover:bg-slate-800 dark:hover:bg-slate-100 cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-4.5 py-2.5 rounded-xl bg-[#443C34] text-white text-xs font-bold transition-all duration-300 hover:shadow-md hover:bg-slate-800 cursor-pointer"
             >
               <FileSpreadsheet className="w-4 h-4" />
               <span>Exporter en CSV</span>
@@ -344,9 +338,9 @@ export default function AdminDashboardPage() {
 
         {/* Data Table */}
         {loading ? (
-          <div className="text-center py-20 bg-white dark:bg-zinc-950 border border-slate-200/50 dark:border-zinc-900 rounded-3xl space-y-3">
-            <Loader2 className="w-8 h-8 animate-spin text-emerald-500 mx-auto" />
-            <p className="text-xs text-slate-400 dark:text-zinc-500 font-semibold tracking-wide">
+          <div className="text-center py-20 bg-white border border-slate-200/50 rounded-3xl space-y-3">
+            <Loader2 className="w-8 h-8 animate-spin text-[#FFDE77] mx-auto" />
+            <p className="text-xs text-slate-400 font-semibold tracking-wide">
               Chargement sécurisé des dossiers...
             </p>
           </div>
@@ -412,16 +406,23 @@ export default function AdminDashboardPage() {
                   <div className="p-3 bg-white dark:bg-zinc-900 border border-slate-200/50 dark:border-zinc-850 rounded-xl">
                     <span className="text-[10px] font-medium text-slate-400 block">Niveau d'Urgence</span>
                     <span className="text-xs font-bold text-slate-800 dark:text-zinc-200 mt-0.5 inline-block">
+                      {selectedDevis.urgence === '24h' ? (
+                        <AlertCircle className="w-3.5 h-3.5 inline mr-1 text-red-500" />
+                      ) : selectedDevis.urgence === 'annuel' ? (
+                        <ShieldCheck className="w-3.5 h-3.5 inline mr-1 text-[#443C34]" />
+                      ) : (
+                        <FileText className="w-3.5 h-3.5 inline mr-1 text-slate-500" />
+                      )}{' '}
                       {selectedDevis.urgence === '24h' 
-                        ? '🚨 Intervention <24h' 
+                        ? 'Intervention <24h' 
                         : selectedDevis.urgence === 'annuel' 
-                        ? '🛡️ Contrat Annuel' 
-                        : '📄 Simple Devis'}
+                        ? 'Contrat Annuel' 
+                        : 'Simple Devis'}
                     </span>
                   </div>
-                  <div className="p-3 bg-white dark:bg-zinc-900 border border-slate-200/50 dark:border-zinc-850 rounded-xl">
+                  <div className="p-3 bg-white border border-slate-200/50 rounded-xl">
                     <span className="text-[10px] font-medium text-slate-400 block">Adresse IP demandeur</span>
-                    <span className="text-[10px] font-mono text-slate-800 dark:text-zinc-200 mt-1 inline-block select-all">
+                    <span className="text-[10px] font-mono text-slate-800 mt-1 inline-block select-all">
                       {selectedDevis.ip_address}
                     </span>
                   </div>
@@ -438,7 +439,7 @@ export default function AdminDashboardPage() {
                   {selectedDevis.nuisibles.map((n) => (
                     <span 
                       key={n}
-                      className="inline-flex items-center px-3 py-1 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/20 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/40"
+                      className="inline-flex items-center px-3 py-1 rounded-xl text-xs font-semibold bg-[#FFDE77]/20 text-[#443C34] border border-[#FFDE77]/30"
                     >
                       {n}
                     </span>
@@ -459,13 +460,13 @@ export default function AdminDashboardPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="font-bold w-16 text-slate-400">Email :</span>
-                    <a href={`mailto:${selectedDevis.email}`} className="text-emerald-600 dark:text-emerald-400 hover:underline font-medium select-all">
+                    <a href={`mailto:${selectedDevis.email}`} className="text-[#443C34] hover:underline font-semibold select-all">
                       {selectedDevis.email}
                     </a>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="font-bold w-16 text-slate-400">Tél :</span>
-                    <a href={`tel:${selectedDevis.telephone}`} className="text-slate-800 dark:text-zinc-200 hover:underline font-semibold select-all">
+                    <a href={`tel:${selectedDevis.telephone}`} className="text-slate-800 hover:underline font-semibold select-all">
                       {selectedDevis.telephone}
                     </a>
                   </div>
@@ -478,7 +479,7 @@ export default function AdminDashboardPage() {
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
                     Message libre du client
                   </h4>
-                  <div className="p-4 bg-amber-50/30 dark:bg-zinc-900/60 border border-amber-100/50 dark:border-zinc-800 rounded-2xl text-xs text-slate-600 dark:text-zinc-300 italic whitespace-pre-wrap leading-relaxed shadow-inner">
+                  <div className="p-4 bg-amber-50/30 border border-amber-100/50 rounded-2xl text-xs text-slate-600 italic whitespace-pre-wrap leading-relaxed shadow-inner">
                     "{selectedDevis.message}"
                   </div>
                 </div>
@@ -486,8 +487,8 @@ export default function AdminDashboardPage() {
             </div>
 
             {/* Modal Actions Footer */}
-            <div className="p-5 border-t border-slate-100 dark:border-zinc-900 bg-slate-50 dark:bg-zinc-950 flex items-center justify-between gap-3">
-              <span className="text-xs text-slate-400 dark:text-zinc-500 font-semibold">
+            <div className="p-5 border-t border-slate-100 bg-slate-50 flex items-center justify-between gap-3">
+              <span className="text-xs text-slate-400 font-semibold">
                 Statut actuel : {selectedDevis.statut.toUpperCase()}
               </span>
               <div className="flex items-center gap-2">
@@ -496,7 +497,7 @@ export default function AdminDashboardPage() {
                     <button
                       type="button"
                       onClick={() => handleStatusChange(selectedDevis.id, 'traite')}
-                      className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold shadow-md cursor-pointer transition-all flex items-center gap-1"
+                      className="px-4 py-2 rounded-xl bg-[#FFDE77] hover:bg-[#FFDE77]/80 text-[#443C34] text-xs font-bold shadow-md cursor-pointer transition-all flex items-center gap-1"
                     >
                       <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                       <span>Traiter</span>
@@ -525,12 +526,48 @@ export default function AdminDashboardPage() {
                   <button
                     type="button"
                     onClick={() => handleStatusChange(selectedDevis.id, 'traite')}
-                    className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold shadow-md cursor-pointer transition-all"
+                    className="px-4 py-2 rounded-xl bg-[#FFDE77] hover:bg-[#FFDE77]/80 text-[#443C34] text-xs font-bold shadow-md cursor-pointer transition-all"
                   >
                     Rétablir en Traité
                   </button>
                 )}
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-in fade-in duration-200">
+          <div className="bg-white border border-slate-200/50 rounded-3xl max-w-sm w-full p-6 space-y-6 shadow-2xl relative animate-in zoom-in-95 duration-200 font-sans">
+            <div className="text-center space-y-3">
+              <div className="inline-flex bg-red-50 p-3.5 rounded-full text-red-600 shadow-inner">
+                <LogOut className="w-6 h-6 stroke-[2.5]" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900">
+                Confirmer la déconnexion ?
+              </h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Êtes-vous sûr de vouloir vous déconnecter de votre espace d'administration BioControl ?
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setShowLogoutConfirm(false)}
+                className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 text-slate-700 bg-white hover:bg-slate-50 transition-all font-semibold text-xs cursor-pointer"
+              >
+                Annuler
+              </button>
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="flex-1 px-4 py-2.5 rounded-xl bg-red-600 text-white hover:bg-red-700 transition-all font-bold text-xs cursor-pointer shadow-md"
+              >
+                Se déconnecter
+              </button>
             </div>
           </div>
         </div>
