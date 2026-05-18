@@ -3,6 +3,7 @@ import { devisFormSchema } from '../../../lib/validators';
 import { sanitizeInput } from '../../../lib/sanitize';
 import { isRateLimited } from '../../../lib/rateLimit';
 import { dbInsertDevis } from '../../../lib/supabase';
+import { sendDevisConfirmationEmail } from '../../../lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -44,7 +45,13 @@ export async function POST(request: NextRequest) {
     // 6. Save in database
     const createdDevis = await dbInsertDevis(sanitizedInput, ipAddress);
 
-    // 7. Return generated UUID
+    // 7. Envoi de l'email de confirmation automatique au client en arrière-plan (Bonus!)
+    // Déclenché de manière non bloquante pour optimiser le temps de réponse client.
+    sendDevisConfirmationEmail(createdDevis).catch((err) => {
+      console.error('❌ Resend : Erreur d\'arrière-plan lors du déclenchement de l\'email :', err);
+    });
+
+    // 8. Return generated UUID
     return NextResponse.json(
       { 
         message: 'Demande de devis enregistrée avec succès.',
