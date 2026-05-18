@@ -20,7 +20,7 @@ const URGENCIES: { value: Urgence; label: string; desc: string; icon: any; color
     label: 'Intervention urgente (< 24h)', 
     desc: 'Traitement critique rapide, équipe dépêchée immédiatement.', 
     icon: AlertTriangle,
-    colorClass: 'border-amber-400 bg-amber-50/40 dark:bg-amber-950/10 text-amber-600 dark:text-amber-400 ring-2 ring-amber-400/25 shadow-sm'
+    colorClass: 'border-amber-400 bg-amber-50/40 text-amber-600 ring-2 ring-amber-400/25 shadow-sm'
   },
   { 
     value: 'annuel', 
@@ -34,7 +34,7 @@ const URGENCIES: { value: Urgence; label: string; desc: string; icon: any; color
     label: 'Simple devis estimatif', 
     desc: 'Estimation budgétaire pour planification sans engagement.', 
     icon: FileText,
-    colorClass: 'border-slate-500 bg-slate-50 dark:bg-zinc-800/40 text-slate-700 dark:text-zinc-300 ring-2 ring-slate-500/25 shadow-sm'
+    colorClass: 'border-slate-500 bg-slate-50 text-slate-700 ring-2 ring-slate-500/25 shadow-sm'
   },
 ];
 
@@ -46,7 +46,7 @@ export default function StepTwo({ formData, onChange, errors }: StepTwoProps) {
     <div className="space-y-6">
       {/* Urgency Radio Cards */}
       <div>
-        <label className="block text-sm font-semibold text-slate-700 dark:text-zinc-300 mb-3">
+        <label className="block text-sm font-semibold text-slate-700 mb-3">
           Degré d'urgence de l'intervention <span className="text-red-500">*</span>
         </label>
         <div className="space-y-3">
@@ -62,23 +62,23 @@ export default function StepTwo({ formData, onChange, errors }: StepTwoProps) {
                 className={`w-full flex items-start p-4 rounded-xl border text-left transition-all duration-300 gap-4 cursor-pointer ${
                   isSelected 
                     ? item.colorClass
-                    : 'border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-slate-300 dark:hover:border-zinc-800/80 hover:bg-slate-50/50'
+                    : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/50'
                 }`}
               >
                 <div className={`p-2.5 rounded-lg border ${
                   isSelected 
-                    ? 'bg-white/80 dark:bg-zinc-900/80 border-current'
-                    : 'bg-slate-50 dark:bg-zinc-800/60 border-slate-200 dark:border-zinc-800'
+                    ? 'bg-white/80 border-current'
+                    : 'bg-slate-50 border-slate-200'
                 }`}>
                   <Icon className="w-5 h-5 stroke-[2]" />
                 </div>
                 <div className="flex-1">
                   <p className={`text-sm font-semibold ${
-                    isSelected ? 'text-slate-900 dark:text-white font-bold' : 'text-slate-700 dark:text-zinc-300'
+                    isSelected ? 'text-slate-900 font-bold' : 'text-slate-700'
                   }`}>
                     {item.label}
                   </p>
-                  <p className="text-xs text-slate-400 dark:text-zinc-500 mt-0.5">
+                  <p className="text-xs text-slate-400 mt-0.5">
                     {item.desc}
                   </p>
                 </div>
@@ -96,11 +96,11 @@ export default function StepTwo({ formData, onChange, errors }: StepTwoProps) {
       {/* Free Text Message */}
       <div>
         <div className="flex items-center justify-between mb-1.5">
-          <label htmlFor="message" className="block text-sm font-semibold text-slate-700 dark:text-zinc-300">
+          <label htmlFor="message" className="block text-sm font-semibold text-slate-700">
             Message ou précisions additionnelles (optionnel)
           </label>
           <span className={`text-[10px] font-semibold transition-colors duration-300 ${
-            isMessageLimitClose ? 'text-amber-500' : 'text-slate-400 dark:text-zinc-500'
+            isMessageLimitClose ? 'text-amber-500' : 'text-slate-400'
           }`}>
             {currentMessageLength} / 500
           </span>
@@ -113,13 +113,13 @@ export default function StepTwo({ formData, onChange, errors }: StepTwoProps) {
           value={formData.message}
           onChange={(e) => onChange({ message: e.target.value })}
           placeholder="Décrivez les signes d'infestation, la disposition des pièces, ou d'autres détails utiles..."
-          className={`block w-full rounded-xl border p-3.5 text-sm focus:outline-none focus:ring-2 transition-all duration-300 bg-white dark:bg-zinc-900 resize-none ${
+          className={`block w-full rounded-xl border p-3.5 text-sm focus:outline-none focus:ring-2 transition-all duration-300 bg-white resize-none ${
             errors.message
               ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-              : 'border-slate-200 dark:border-zinc-800 focus:border-[#FFDE77] focus:ring-[#FFDE77]/20'
+              : 'border-slate-200 focus:border-[#FFDE77] focus:ring-[#FFDE77]/20'
           }`}
         />
-        <p className="mt-1 text-[11px] text-slate-400 dark:text-zinc-500">
+        <p className="mt-1 text-[11px] text-slate-400">
           Veuillez ne pas dépasser 500 caractères.
         </p>
         {errors.message && (

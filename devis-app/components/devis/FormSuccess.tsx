@@ -27,21 +27,21 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
 
       {/* Success Title */}
       <div className="space-y-2">
-        <h2 className="text-2xl font-bold text-slate-800 dark:text-white">
+        <h2 className="text-2xl font-bold text-slate-800">
           Demande reçue avec succès !
         </h2>
-        <p className="text-sm text-slate-500 dark:text-zinc-400 max-w-md mx-auto">
+        <p className="text-sm text-slate-500 max-w-md mx-auto">
           Votre demande de devis a été enregistrée et transmise à nos techniciens. Un expert étudie votre dossier immédiatement.
         </p>
       </div>
 
       {/* UUID Card */}
-      <div className="max-w-md mx-auto bg-slate-50 dark:bg-zinc-900 border border-slate-100 dark:border-zinc-800 rounded-2xl p-4 flex items-center justify-between gap-3 shadow-inner">
+      <div className="max-w-md mx-auto bg-slate-50 border border-slate-100 rounded-2xl p-4 flex items-center justify-between gap-3 shadow-inner">
         <div className="text-left flex-1 min-w-0">
           <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
             Référence de votre dossier (UUID)
           </span>
-          <p className="text-xs font-mono text-slate-600 dark:text-zinc-300 select-all truncate mt-0.5">
+          <p className="text-xs font-mono text-slate-600 select-all truncate mt-0.5">
             {uuid}
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
           className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all duration-300 cursor-pointer ${
             copied
               ? 'bg-[#FFDE77] border-[#FFDE77] text-[#443C34] shadow-md font-bold'
-              : 'bg-white dark:bg-zinc-800 border-slate-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-300 hover:border-slate-300 hover:shadow-sm'
+              : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:shadow-sm'
           }`}
         >
           {copied ? (
@@ -75,10 +75,10 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
             <PhoneCall className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-slate-700 dark:text-zinc-200">
+            <h4 className="text-sm font-semibold text-slate-700">
               Prise de contact rapide
             </h4>
-            <p className="text-xs text-slate-400 dark:text-zinc-400">
+            <p className="text-xs text-slate-400">
               Nos experts vous rappellent sous 2 heures (en jour ouvrable) pour affiner les détails techniques.
             </p>
           </div>
@@ -89,10 +89,10 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
             <Calendar className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-slate-700 dark:text-zinc-200">
+            <h4 className="text-sm font-semibold text-slate-700">
               Intervention sur site
             </h4>
-            <p className="text-xs text-slate-400 dark:text-zinc-400">
+            <p className="text-xs text-slate-400">
               Planification d'un passage selon votre degré d'urgence (intervention sous 24h disponible).
             </p>
           </div>
@@ -103,10 +103,10 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
             <ShieldCheck className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-slate-700 dark:text-zinc-200">
+            <h4 className="text-sm font-semibold text-slate-700">
               Garantie et sécurité
             </h4>
-            <p className="text-xs text-slate-400 dark:text-zinc-400">
+            <p className="text-xs text-slate-400">
               Toutes nos interventions sont certifiées Certibiocide et respectent les normes environnementales.
             </p>
           </div>
@@ -114,7 +114,7 @@ export default function FormSuccess({ uuid, onReset }: FormSuccessProps) {
       </div>
 
       {/* Primary Action Button */}
-      <div className="pt-6 border-t border-slate-100 dark:border-zinc-800">
+      <div className="pt-6 border-t border-slate-100">
         <button
           type="button"
           onClick={onReset}

@@ -28,7 +28,7 @@ export default function StepIndicator({ currentStep, totalSteps }: StepIndicator
       {/* Desktop Stepper */}
       <div className="hidden sm:flex items-center justify-between relative">
         {/* Connecting line */}
-        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-slate-100 dark:bg-zinc-800 -translate-y-1/2 z-0" />
+        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-slate-100 -translate-y-1/2 z-0" />
         
         {/* Active progress line */}
         <div 
@@ -49,8 +49,8 @@ export default function StepIndicator({ currentStep, totalSteps }: StepIndicator
                   isCompleted 
                     ? 'bg-[#FFDE77] text-[#443C34] ring-4 ring-[#FFDE77]/20' 
                     : isActive 
-                    ? 'bg-white dark:bg-zinc-900 border-2 border-[#FFDE77] text-[#443C34] ring-4 ring-[#FFDE77]/10 scale-110' 
-                    : 'bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 text-slate-400'
+                    ? 'bg-white border-2 border-[#FFDE77] text-[#443C34] ring-4 ring-[#FFDE77]/10 scale-110' 
+                    : 'bg-slate-50 border border-slate-200 text-slate-400'
                 }`}
                 aria-current={isActive ? 'step' : undefined}
               >
@@ -67,12 +67,12 @@ export default function StepIndicator({ currentStep, totalSteps }: StepIndicator
                   isActive 
                     ? 'text-[#443C34] font-bold' 
                     : isCompleted 
-                    ? 'text-slate-700 dark:text-zinc-300 font-medium' 
+                    ? 'text-slate-700 font-medium' 
                     : 'text-slate-400'
                 }`}>
                   {step.label}
                 </p>
-                <p className="text-[10px] text-slate-400 dark:text-zinc-500 uppercase tracking-wider mt-0.5">
+                <p className="text-[10px] text-slate-400 uppercase tracking-wider mt-0.5">
                   {step.desc}
                 </p>
               </div>

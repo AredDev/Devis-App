@@ -65,7 +65,7 @@ export default function StepOne({ formData, onChange, errors }: StepOneProps) {
     <div className="space-y-6">
       {/* Establishment Selection */}
       <div>
-        <label className="block text-sm font-semibold text-slate-700 dark:text-zinc-300 mb-3">
+        <label className="block text-sm font-semibold text-slate-700 mb-3">
           Type d'établissement <span className="text-red-500">*</span>
         </label>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -80,7 +80,7 @@ export default function StepOne({ formData, onChange, errors }: StepOneProps) {
                 className={`flex flex-col items-center justify-center p-4 rounded-xl border text-center transition-all duration-300 gap-2 cursor-pointer ${
                   isSelected
                     ? 'border-[#FFDE77] bg-[#FFDE77]/10 text-[#443C34] ring-2 ring-[#FFDE77]/20 shadow-md font-bold'
-                    : 'border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-500 dark:text-zinc-400 hover:border-slate-300 hover:bg-slate-50/50 dark:hover:bg-zinc-800/30'
+                    : 'border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50/50'
                 }`}
               >
                 <Icon className={`w-6 h-6 ${isSelected ? 'scale-110' : ''}`} />
@@ -100,7 +100,7 @@ export default function StepOne({ formData, onChange, errors }: StepOneProps) {
       <div>
         <label
           htmlFor="surface"
-          className="block text-sm font-semibold text-slate-700 dark:text-zinc-300 mb-1.5"
+          className="block text-sm font-semibold text-slate-700 mb-1.5"
         >
           Surface du local (m²) <span className="text-red-500">*</span>
         </label>
@@ -117,17 +117,17 @@ export default function StepOne({ formData, onChange, errors }: StepOneProps) {
               onChange({ surface: val });
             }}
             placeholder="Ex: 150"
-            className={`block w-full rounded-xl border p-3.5 pr-12 text-sm focus:outline-none focus:ring-2 transition-all duration-300 bg-white dark:bg-zinc-900 ${
+            className={`block w-full rounded-xl border p-3.5 pr-12 text-sm focus:outline-none focus:ring-2 transition-all duration-300 bg-white ${
               errors.surface
                 ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-                : 'border-slate-200 dark:border-zinc-800 focus:border-[#FFDE77] focus:ring-[#FFDE77]/20'
+                : 'border-slate-200 focus:border-[#FFDE77] focus:ring-[#FFDE77]/20'
             }`}
           />
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
-            <span className="text-xs font-bold text-slate-400 dark:text-zinc-500">m²</span>
+            <span className="text-xs font-bold text-slate-400">m²</span>
           </div>
         </div>
-        <p className="mt-1 text-[11px] text-slate-400 dark:text-zinc-500">
+        <p className="mt-1 text-[11px] text-slate-400">
           Entrez un nombre entre 10 et 50 000 m².
         </p>
         {errors.surface && (
@@ -139,7 +139,7 @@ export default function StepOne({ formData, onChange, errors }: StepOneProps) {
 
       {/* Pests Selector */}
       <div>
-        <label className="block text-sm font-semibold text-slate-700 dark:text-zinc-300 mb-3">
+        <label className="block text-sm font-semibold text-slate-700 mb-3">
           Types de nuisibles ciblés <span className="text-red-500">*</span> (sélection multiple)
         </label>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -153,14 +153,14 @@ export default function StepOne({ formData, onChange, errors }: StepOneProps) {
                 className={`flex items-center p-3.5 rounded-xl border text-left transition-all duration-300 gap-3 cursor-pointer ${
                   isSelected
                     ? 'border-[#FFDE77] bg-[#FFDE77]/10 shadow-sm'
-                    : 'border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-slate-300 dark:hover:border-zinc-800/80 hover:bg-slate-50/50'
+                    : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/50'
                 }`}
               >
                 <div
                   className={`w-5 h-5 rounded flex items-center justify-center border transition-all duration-300 ${
                     isSelected
                       ? 'bg-[#FFDE77] border-[#FFDE77] text-[#443C34]'
-                      : 'border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-800'
+                      : 'border-slate-300 bg-white'
                   }`}
                 >
                   {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
@@ -170,16 +170,16 @@ export default function StepOne({ formData, onChange, errors }: StepOneProps) {
                     className={`text-sm font-semibold ${
                       isSelected
                         ? 'text-[#443C34] font-bold'
-                        : 'text-slate-700 dark:text-zinc-300'
+                        : 'text-slate-700'
                     }`}
                   >
                     {item.label}
                   </p>
-                  <p className="text-[11px] text-slate-400 dark:text-zinc-500">
+                  <p className="text-[11px] text-slate-400">
                     {item.desc}
                   </p>
                 </div>
-                <Bug className={`w-5 h-5 opacity-40 ${isSelected ? 'text-[#FFDE77] opacity-80' : 'text-slate-300 dark:text-zinc-600'}`} />
+                <Bug className={`w-5 h-5 opacity-40 ${isSelected ? 'text-[#FFDE77] opacity-80' : 'text-slate-300'}`} />
               </button>
             );
           })}
