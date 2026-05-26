@@ -122,7 +122,7 @@ export default function AdminLoginPage() {
         </div>
 
         <div className="text-center text-[10px] text-slate-400">
-          Clé de démonstration par défaut : <code className="font-mono bg-slate-100 px-1 rounded">AdminPestControl2026!</code>
+          Clé de démonstration par défaut : <code className="font-mono bg-slate-100 px-1 rounded">***************</code>
         </div>
       </div>
     </div>
